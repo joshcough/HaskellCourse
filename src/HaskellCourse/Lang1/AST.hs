@@ -16,6 +16,14 @@ data E =
   | PrimApp Prim E E
   deriving Eq
 
+instance Show Prim where
+  show Add      = "+"
+  show Sub      = "-"
+  show Mult     = "*"
+  show LessThan = "<"
+  show LTorEQ   = "<="
+  show EqualTo  = "=="    
+
 instance Show E where
   show (LitInt i)          = show i
   show (Var v)             = v
