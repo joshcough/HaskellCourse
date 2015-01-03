@@ -37,6 +37,7 @@ typeCheck (App p arg args) =
 primType :: Prim -> Type
 primType Not     = ArrowT BoolT BoolT
 primType EqualTo = Poly
+primType LTorEQ  = ArrowT NumT (ArrowT NumT  BoolT) 
 primType _       = ArrowT NumT (ArrowT NumT  NumT) 
 
 apply :: Type -> Type -> Type
