@@ -7,15 +7,15 @@ Type rules:
 
 <any int> :: IntT, True :: BoolT, False BoolT
 
-  e: BoolT
---------------
-(! e) : BoolT
+  e: BoolT             e1 : IntT, e2: IntT
+--------------      -------------------------  
+(! e) : BoolT          (<= e1 e2) : BoolT
 
-Four rules (written as one) for these primitives: +,-,*,<=
+Three rules (written as one) for these primitives: +,-,*
 
    e1 : IntT, e2: IntT
 -------------------------
-((+|-|*|<=) e1 e1) : IntT
+((+|-|*|<=) e1 e2) : IntT
 
 Two rules for polymorphic equality function:
 

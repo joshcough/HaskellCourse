@@ -14,5 +14,5 @@ import HaskellCourse.Parsing
 
 runAE :: String -> Runtime
 runAE s = 
-  let exp = parseString s
+  let exp = parseExp $ readSExpr s
   in  seq (typeCheck exp) (interp exp)

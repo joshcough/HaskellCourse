@@ -4,9 +4,6 @@ import Data.Maybe (fromMaybe)
 import HaskellCourse.Parsing
 import HaskellCourse.AE.AST
 
-parseString :: String -> Exp
-parseString = parseExp . readSExpr
-
 parseExp :: SExpr -> Exp
 parseExp (AtomNum  n)   = LitInt  n
 parseExp (AtomBool b)   = LitBool b
