@@ -7,9 +7,9 @@ Type rules:
 
 <any int> :: IntT, True :: BoolT, False BoolT
 
-    e: BoolT
-----------------
-(not e) : BoolT
+  e: BoolT
+--------------
+(! e) : BoolT
 
 Four rules (written as one) for these primitives: +,-,*,<=
 
