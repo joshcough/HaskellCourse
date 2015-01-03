@@ -1,6 +1,20 @@
-module HaskellCourse.AE.Interp (interp) where
+module HaskellCourse.AE.Interp (interp, Runtime) where
 
 import HaskellCourse.AE.AST
+
+{-
+Denotational semantics:
+
+[[any int]] = itself
+[[True]]    = true
+[[False]]   = false
+(not b)     = not [[b]]
+(+ l r)     = [[l]] + [[r]]
+(- l r)     = [[l]] - [[r]]
+(* l r)     = [[l]] * [[r]]
+(<= l r)    = [[l]] <= [[r]]
+(== l r)    = todo: learn how to represent polymorphism in D.S.
+-}
 
 data Runtime = NumR Int | BoolR Bool deriving (Show)
 

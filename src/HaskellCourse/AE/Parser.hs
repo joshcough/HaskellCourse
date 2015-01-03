@@ -7,16 +7,16 @@ parseString :: String -> Exp
 parseString = parseExp . readSExpr
 
 parseExp :: SExpr -> Exp
-parseExp (AtomNum  n)    = LitInt  n
-parseExp (AtomBool b)    = LitBool b
-parseExp (AtomSym  fun)  = parseFun fun
-parseExp (List (e : es)) = App (parseExp e) (fmap parseExp es)
+parseExp (AtomNum  n)   = LitInt  n
+parseExp (AtomBool b)   = LitBool b
+parseExp (List ((AtomSym f) : es)) = App (parsePrim f) (fmap parseExp es)
+parseExp bad = error $ "bad expression: " ++ show bad
 
-parseFun :: String -> Exp
-parseFun "+"   = PrimExp Add
-parseFun "-"   = PrimExp Sub
-parseFun "*"   = PrimExp Mult
-parseFun "<="  = PrimExp LTorEQ
-parseFun "=="  = PrimExp EqualTo
-parseFun "not" = PrimExp Not
-parseFun bad   = error $ "unknown function: " ++ bad
+parsePrim :: String -> Exp
+parsePrim "+"   = PrimExp Add
+parsePrim "-"   = PrimExp Sub
+parsePrim "*"   = PrimExp Mult
+parsePrim "<="  = PrimExp LTorEQ
+parsePrim "=="  = PrimExp EqualTo
+parsePrim "not" = PrimExp Not
+parsePrim bad   = error $ "unknown function: " ++ bad
