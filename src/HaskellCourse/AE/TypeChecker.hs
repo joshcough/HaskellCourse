@@ -17,7 +17,7 @@ Four rules (written as one) for these primitives: +,-,*,<=
 -------------------------
 ((+|-|*|<=) e1 e1) : IntT
 
-Two rules for equality:
+Two rules for polymorphic equality function:
 
 e1 : IntT, e2: IntT    e1 : BoolT, e2: BoolT
 -------------------,   ---------------------
@@ -30,8 +30,7 @@ typeCheck :: Exp -> Type
 typeCheck (LitInt  _) = NumT
 typeCheck (LitBool _) = BoolT
 typeCheck (App (PrimExp p) args) =
-  let funType  = primType p
-      argTypes = fmap typeCheck args
+  let funType  = primType p; argTypes = fmap typeCheck args
   in foldl apply funType argTypes
 
 primType :: Prim -> Type
@@ -40,8 +39,8 @@ primType EqualTo = Poly
 primType _       = ArrowT NumT (ArrowT NumT  NumT) 
 
 apply :: Type -> Type -> Type
-apply BoolT  _ = error $ "attempt to apply arguments to BoolT"
-apply NumT   _ = error $ "attempt to apply arguments to NumT"
+apply BoolT  _ = error $ "type error: attempt to apply arguments to BoolT"
+apply NumT   _ = error $ "type error: attempt to apply arguments to NumT"
 apply (ArrowT i o) t = if t == i then o else typeMismatch i t
 apply Poly t = ArrowT t BoolT
 

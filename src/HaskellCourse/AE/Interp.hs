@@ -31,3 +31,4 @@ interpPrim LTorEQ  [NumR  l, NumR  r] = BoolR $ l <= r
 interpPrim EqualTo [NumR  l, NumR  r] = BoolR $ l == r
 interpPrim EqualTo [BoolR l, BoolR r] = BoolR $ l == r
 interpPrim Not     [BoolR b]          = BoolR $ not b
+
