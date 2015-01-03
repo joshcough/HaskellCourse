@@ -16,3 +16,11 @@ runAE :: String -> Runtime
 runAE s = 
   let exp = parseExp $ readSExpr s
   in  seq (typeCheck exp) (interp exp)
+
+{-
+ main :: IO ()
+ main = do
+   args <- getArgs
+   f <- readFile (args !! 0)
+   put
+-}

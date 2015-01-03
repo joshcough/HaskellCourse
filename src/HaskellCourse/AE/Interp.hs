@@ -21,14 +21,14 @@ data Runtime = NumR Int | BoolR Bool deriving (Show)
 interp :: Exp -> Runtime
 interp (LitInt  i)  = NumR i
 interp (LitBool b)  = BoolR b
-interp (App p e es) = interpPrim p $ fmap interp (e : es)
+interp (App (PrimExp Not) a) = case interp a of BoolR b -> BoolR (not b)
+interp (App (App (PrimExp p) a) b) = interpBinaryPrim p (interp a) (interp b)
 
-interpPrim :: Prim -> [Runtime] -> Runtime
-interpPrim Add      [NumR  l, NumR  r] = NumR  $ l + r
-interpPrim Sub      [NumR  l, NumR  r] = NumR  $ l - r
-interpPrim Mult     [NumR  l, NumR  r] = NumR  $ l * r
-interpPrim LessThan [NumR  l, NumR  r] = BoolR $ l < r
-interpPrim EqualTo  [NumR  l, NumR  r] = BoolR $ l == r
-interpPrim EqualTo  [BoolR l, BoolR r] = BoolR $ l == r
-interpPrim Not      [BoolR b]          = BoolR $ not b
+interpBinaryPrim :: Prim -> Runtime -> Runtime -> Runtime
+interpBinaryPrim Add      (NumR  l) (NumR  r) = NumR  $ l + r
+interpBinaryPrim Sub      (NumR  l) (NumR  r) = NumR  $ l - r
+interpBinaryPrim Mult     (NumR  l) (NumR  r) = NumR  $ l * r
+interpBinaryPrim LessThan (NumR  l) (NumR  r) = BoolR $ l < r
+interpBinaryPrim EqualTo  (NumR  l) (NumR  r) = BoolR $ l == r
+interpBinaryPrim EqualTo  (BoolR l) (BoolR r) = BoolR $ l == r
 

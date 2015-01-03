@@ -5,12 +5,12 @@ import HaskellCourse.Util
 {-
 Grammar:
 
-e    := int | bool | (prim e ...)
+e    := int | bool | prim | (e e) | (e e e)
 prim := +|-|*|<|==|!
 -}
 
 data Prim = Add | Sub | Mult | LessThan | EqualTo | Not 
   deriving Show
 
-data Exp = LitInt Int | LitBool Bool | App Prim Exp [Exp]
+data Exp = LitInt Int | LitBool Bool | PrimExp Prim | App Exp Exp
   deriving Show

@@ -29,10 +29,8 @@ data Type = NumT | BoolT | ArrowT Type Type | Poly deriving (Eq, Show)
 typeCheck :: Exp -> Type
 typeCheck (LitInt  _) = NumT
 typeCheck (LitBool _) = BoolT
-typeCheck (App p arg args) =
-  let funType  = primType p
-      argTypes = fmap typeCheck (arg : args)
-  in foldl apply funType argTypes
+typeCheck (PrimExp p) = primType p
+typeCheck (App f arg) = apply (typeCheck f) (typeCheck arg)
 
 primType :: Prim -> Type
 primType Not      = ArrowT BoolT BoolT
