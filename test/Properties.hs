@@ -1,14 +1,31 @@
 {-# LANGUAGE TemplateHaskell #-}
 module Properties where
 
+import Control.Applicative
+import HaskellCourse.AE.Main
 import Test.Framework.Providers.QuickCheck2
 import Test.Framework.TH
 import Test.QuickCheck
 
-prop_list_reverse_reverse :: [Int] -> Bool
-prop_list_reverse_reverse list = list == reverse (reverse list)
+prop_all_exps_typecheck :: Exp -> Bool
+prop_all_exps_typecheck e = typeCheck e `elem` [BoolT, NumT]
 
-prop_list_length :: [Int] -> Int -> Bool
-prop_list_length list i = length (i : list) == 1 + length list
+-- arbitrary expressions resulting in Int or Bool
+instance Arbitrary Exp where
+  arbitrary = oneof [intExp, boolExp]
+
+-- generate expressions that return ints
+intExp  = oneof [ LitInt <$> arbitrary, 
+                  App    <$> intPrim <*> intExp <*> single intExp ] where
+  intPrim = oneof $ return <$> [ Add, Sub, Mult ]
+
+-- expressions that return bools
+boolExp = oneof [ LitBool <$> arbitrary, 
+                  App <$> return Not      <*> boolExp <*> return [],
+                  App <$> return LessThan <*> intExp  <*> single intExp,
+                  App <$> return EqualTo  <*> boolExp <*> single boolExp,
+                  App <$> return EqualTo  <*> intExp  <*> single intExp ]
+
+single g = (:[]) <$> g
 
 tests = $testGroupGenerator
