@@ -6,10 +6,10 @@ import HaskellCourse.Util
 Grammar:
 
 e    := int | bool | (prim e ...)
-prim := +|-|*|<=|==|!
+prim := +|-|*|<|==|!
 -}
 
-data Prim = Add | Sub | Mult | LTorEQ | EqualTo | Not 
+data Prim = Add | Sub | Mult | LessThan | EqualTo | Not 
   deriving Show
 
 data Exp = LitInt Int | LitBool Bool | App Prim Exp [Exp]

@@ -12,7 +12,7 @@ parseExp (List ((AtomSym f) : e : es)) =
 parseExp bad = error $ "parse error, bad expression: " ++ show bad
 
 prims = [("+", Add), ("-", Sub), ("*", Mult), 
-         ("<=", LTorEQ), ("==", EqualTo), ("!", Not)]
+         ("<", LessThan), ("==", EqualTo), ("!", Not)]
 
 parsePrim :: String -> Prim
 parsePrim s = fromMaybe 

@@ -7,15 +7,15 @@ Type rules:
 
 <any int> :: IntT, True :: BoolT, False BoolT
 
-  e: BoolT             e1 : IntT, e2: IntT
---------------      -------------------------  
-(! e) : BoolT          (<= e1 e2) : BoolT
+   e: BoolT            e1 : IntT, e2: IntT
+--------------      -------------------------
+(! e) : BoolT           (< e1 e2) : BoolT
 
 Three rules (written as one) for these primitives: +,-,*
 
-   e1 : IntT, e2: IntT
--------------------------
-((+|-|*|<=) e1 e2) : IntT
+  e1 : IntT, e2: IntT
+------------------------
+ ((+|-|*) e1 e2) : IntT
 
 Two rules for polymorphic equality function:
 
@@ -35,10 +35,10 @@ typeCheck (App p arg args) =
   in foldl apply funType argTypes
 
 primType :: Prim -> Type
-primType Not     = ArrowT BoolT BoolT
-primType EqualTo = Poly
-primType LTorEQ  = ArrowT NumT (ArrowT NumT  BoolT) 
-primType _       = ArrowT NumT (ArrowT NumT  NumT) 
+primType Not      = ArrowT BoolT BoolT
+primType EqualTo  = Poly
+primType LessThan = ArrowT NumT (ArrowT NumT  BoolT) 
+primType _        = ArrowT NumT (ArrowT NumT  NumT) 
 
 apply :: Type -> Type -> Type
 apply BoolT  _ = error $ "type error: attempt to apply arguments to BoolT"
