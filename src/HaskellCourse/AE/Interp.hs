@@ -8,7 +8,7 @@ Denotational semantics:
 [[any int]] = itself
 [[True]]    = true
 [[False]]   = false
-(not b)     = not [[b]]
+(! b)       = not [[b]]
 (+ l r)     = [[l]] + [[r]]
 (- l r)     = [[l]] - [[r]]
 (* l r)     = [[l]] * [[r]]
@@ -21,7 +21,7 @@ data Runtime = NumR Int | BoolR Bool deriving (Show)
 interp :: Exp -> Runtime
 interp (LitInt  i)  = NumR i
 interp (LitBool b)  = BoolR b
-interp (App (PrimExp p) args) = interpPrim p $ fmap interp args
+interp (App p e es) = interpPrim p $ fmap interp (e : es)
 
 interpPrim :: Prim -> [Runtime] -> Runtime
 interpPrim Add     [NumR  l, NumR  r] = NumR  $ l + r
