@@ -24,10 +24,10 @@ e1 : IntT, e2: IntT    e1 : BoolT, e2: BoolT
 (== e1 e2) : BoolT      (== e1 e2) : BoolT
 -}
 
-data Type = NumT | BoolT | ArrowT Type Type | Poly deriving (Eq, Show)
+data Type = IntT | BoolT | ArrowT Type Type | Poly deriving (Eq, Show)
 
 typeCheck :: Exp -> Type
-typeCheck (LitInt  _) = NumT
+typeCheck (LitInt  _) = IntT
 typeCheck (LitBool _) = BoolT
 typeCheck (PrimExp p) = primType p
 typeCheck (App f arg) = apply (typeCheck f) (typeCheck arg)
@@ -35,12 +35,12 @@ typeCheck (App f arg) = apply (typeCheck f) (typeCheck arg)
 primType :: Prim -> Type
 primType Not      = ArrowT BoolT BoolT
 primType EqualTo  = Poly
-primType LessThan = ArrowT NumT (ArrowT NumT  BoolT) 
-primType _        = ArrowT NumT (ArrowT NumT  NumT) 
+primType LessThan = ArrowT IntT (ArrowT IntT  BoolT) 
+primType _        = ArrowT IntT (ArrowT IntT  IntT) 
 
 apply :: Type -> Type -> Type
 apply BoolT  _ = error $ "type error: attempt to apply arguments to BoolT"
-apply NumT   _ = error $ "type error: attempt to apply arguments to NumT"
+apply IntT   _ = error $ "type error: attempt to apply arguments to IntT"
 apply (ArrowT i o) t = if t == i then o else typeMismatch i t
 apply Poly t = ArrowT t BoolT
 
