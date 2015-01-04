@@ -1,7 +1,7 @@
 module Main where
 
-import Properties
+import AEProperties
 import UnitTests
 import Test.Framework.Runners.Console (defaultMain)
 
-main = defaultMain $ [UnitTests.tests, Properties.tests]
+main = defaultMain $ [UnitTests.tests, AEProperties.tests]
