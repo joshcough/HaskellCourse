@@ -1,10 +1,10 @@
 module HaskellCourse.AE.AE (
-  module HaskellCourse.AE.AST
+  module HaskellCourse.AE.AE
+ ,module HaskellCourse.AE.AST
  ,module HaskellCourse.AE.Interp
  ,module HaskellCourse.AE.Parser
  ,module HaskellCourse.AE.TypeChecker
  ,module HaskellCourse.Parsing
- ,module HaskellCourse.AE.AE
 ) where
 
 import HaskellCourse.AE.AST
