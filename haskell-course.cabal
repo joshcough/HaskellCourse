@@ -18,24 +18,31 @@ source-repository head
 -- configuration for building a library
 library
   default-language: Haskell2010
-  hs-source-dirs: src
-  exposed-modules:
   
-    HaskellCourse.LAE.LAE
-    HaskellCourse.LAE.AST
-    HaskellCourse.LAE.Interp
-    HaskellCourse.LAE.Parser
-    HaskellCourse.LAE.TypeChecker
+  hs-source-dirs: src
+  
+  exposed-modules:
+    HaskellCourse.UntypedLC.UntypedLC
+    HaskellCourse.UntypedLC.AST
+    HaskellCourse.UntypedLC.Interp
+    HaskellCourse.UntypedLC.Parser
 
+    HaskellCourse.LAEE.LAEE
+    HaskellCourse.LAEE.AST
+    HaskellCourse.LAEE.Interp
+    HaskellCourse.LAEE.Parser
+  
     HaskellCourse.AE.AE
     HaskellCourse.AE.AST
     HaskellCourse.AE.Interp
     HaskellCourse.AE.Parser
-    HaskellCourse.AE.TypeChecker
 
-    HaskellCourse.Parsing
-  other-modules:
     HaskellCourse.Util
+
+  other-modules:
+    HaskellCourse.Parsing
+    HaskellCourse.Prim
+
   build-depends:
     base                 >= 4.6       && < 5,
     bytestring           >= 0.10.4.0,
@@ -47,11 +54,24 @@ library
     utf8-string          >= 0.3.6     && < 0.4
 
 -- configuration for an executable 
-executable ae
+executable hc-ae
   default-language: Haskell2010
   hs-source-dirs: executables
   main-is: AEMain.hs
   build-depends: base >= 4.6 && < 5, haskell-course
+
+executable hc-lae
+  default-language: Haskell2010
+  hs-source-dirs: executables
+  main-is: LAEMain.hs
+  build-depends: base >= 4.6 && < 5, haskell-course
+
+executable hc-ulc
+  default-language: Haskell2010
+  hs-source-dirs: executables
+  main-is: UntypedLC.hs
+  build-depends: base >= 4.6 && < 5, haskell-course
+
 
 -- configuration for Unit tests and properties
 test-suite unit-tests-and-properties

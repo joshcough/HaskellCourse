@@ -5,38 +5,19 @@
 --
 -- @
 --
---  e    := int | bool | prim | (e e) | (e e e)
+--  e    := int | (prim e e)
 --
---  prim := + | - | * | < | == | !
+--  prim := + | - | * | /
 --
 -- @
 module HaskellCourse.AE.AST where
 
+import HaskellCourse.Prim
 import HaskellCourse.Util
 
 -- | Corresponds to e in the AE grammar.
-data Exp = LitInt Int | LitBool Bool | PrimExp Prim | App Exp Exp
-
--- | Corresponds to prim in the AE grammar.
-data Prim = Add | Sub | Mult | LessThan | EqualTo | Not 
-
-instance Show Prim where
-  show Add      = "+"
-  show Sub      = "-"
-  show Mult     = "*"
-  show LessThan = "<="
-  show EqualTo  = "=="
-  show Not      = "not"
+data Exp = LitInt Int | App Prim Exp Exp
 
 instance Show Exp where
   show (LitInt  i) = show i
-  show (LitBool b) = show b
-  show (PrimExp p) = show p
-  show (App f (App a b)) = list [show f, show a, show b]
-  show (App f arg) = list [show f, show arg]
-
-unaryApp :: Exp -> Exp -> Exp
-unaryApp f a = App f a
-
-binaryApp :: Exp -> Exp -> Exp -> Exp
-binaryApp f a b = App (App f a) b 
+  show (App p a b) = list [show p, show a, show b]
