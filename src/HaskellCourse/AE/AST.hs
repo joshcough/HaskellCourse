@@ -5,9 +5,9 @@
 --
 -- @
 --
---  e    := int | (prim e e)
+--  e    := int | bool | (prim e e)
 --
---  prim := + | - | * | /
+--  prim := + | - | * | / | && | (||) 
 --
 -- @
 module HaskellCourse.AE.AST where
@@ -16,7 +16,7 @@ import HaskellCourse.Prim
 import HaskellCourse.Util
 
 -- | Corresponds to e in the AE grammar.
-data Exp = LitInt Int | App Prim Exp Exp
+data Exp = LitInt Int | LitBool | App Prim Exp Exp
 
 instance Show Exp where
   show (LitInt  i) = show i

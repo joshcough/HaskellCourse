@@ -8,5 +8,6 @@ import HaskellCourse.AE.AST
 -- | Parse the given s-expression into an AE 'Exp'.
 parseExp :: SExpr -> Exp
 parseExp (AtomNum  n) = LitInt  n
+parseExp (AtomBool b) = LitBool b
 parseExp (List [AtomSym p, a, b]) = App (parsePrim p) (parseExp a) (parseExp b)
 parseExp bad = error $ "parse error, bad expression: " ++ show bad
