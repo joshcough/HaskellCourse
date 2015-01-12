@@ -21,22 +21,22 @@ library
   
   hs-source-dirs: src
   
-  exposed-modules:
-    HaskellCourse.UntypedLC.UntypedLC
-    HaskellCourse.UntypedLC.AST
-    HaskellCourse.UntypedLC.Parser
-    --HaskellCourse.UntypedLC.LazyInterp
-    HaskellCourse.UntypedLC.StrictInterp
+  exposed-modules:  
+    HaskellCourse.AE.AE
+    HaskellCourse.AE.AST
+    HaskellCourse.AE.Interp
+    HaskellCourse.AE.Parser
 
     HaskellCourse.LAE.LAE
     HaskellCourse.LAE.AST
     HaskellCourse.LAE.Interp
     HaskellCourse.LAE.Parser
-  
-    HaskellCourse.AE.AE
-    HaskellCourse.AE.AST
-    HaskellCourse.AE.Interp
-    HaskellCourse.AE.Parser
+
+    HaskellCourse.UntypedLC.UntypedLC
+    HaskellCourse.UntypedLC.AST
+    HaskellCourse.UntypedLC.Parser
+    --HaskellCourse.UntypedLC.LazyInterp
+    HaskellCourse.UntypedLC.StrictInterp
 
     HaskellCourse.Util
 
