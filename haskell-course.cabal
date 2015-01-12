@@ -35,7 +35,6 @@ library
     HaskellCourse.UntypedLC.UntypedLC
     HaskellCourse.UntypedLC.AST
     HaskellCourse.UntypedLC.Parser
-    --HaskellCourse.UntypedLC.LazyInterp
     HaskellCourse.UntypedLC.StrictInterp
 
     HaskellCourse.Util
