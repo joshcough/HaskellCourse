@@ -8,3 +8,10 @@ If you want to follow along, the languages should be learned in the following or
   * LAE - AE with `let` expressions
   * UntypedLC - The untyped lambda calculus
   * ... more to come soon ...
+
+For any of the languages you should read files in this order:
+
+  * AST.hs
+  * Parser.hs (not strictly necessary)
+  * Interp.hs
+  * <Language>.hs (where Language is the name of the language)
