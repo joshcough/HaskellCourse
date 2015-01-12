@@ -1,12 +1,12 @@
 {-# Language BangPatterns #-}
 
-module HaskellCourse.LAEE.Interp (interp) where
+module HaskellCourse.LAE.Interp (interp) where
 
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Maybe (fromMaybe)
 import HaskellCourse.Prim
-import HaskellCourse.LAEE.AST
+import HaskellCourse.LAE.AST
 
 type Env = Map Var Int
 

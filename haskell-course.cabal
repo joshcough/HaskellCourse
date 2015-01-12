@@ -28,10 +28,10 @@ library
     --HaskellCourse.UntypedLC.LazyInterp
     HaskellCourse.UntypedLC.StrictInterp
 
-    HaskellCourse.LAEE.LAEE
-    HaskellCourse.LAEE.AST
-    HaskellCourse.LAEE.Interp
-    HaskellCourse.LAEE.Parser
+    HaskellCourse.LAE.LAE
+    HaskellCourse.LAE.AST
+    HaskellCourse.LAE.Interp
+    HaskellCourse.LAE.Parser
   
     HaskellCourse.AE.AE
     HaskellCourse.AE.AST

@@ -12,7 +12,7 @@
 --  var  := [a-z]+
 --
 -- @
-module HaskellCourse.LAEE.AST where
+module HaskellCourse.LAE.AST where
 
 import HaskellCourse.Prim
 import HaskellCourse.Util
