@@ -1,15 +1,3 @@
--- | Denotational semantics of AE:
---
--- @
--- [[any int]] = itself
--- [[True]]    = true
--- [[False]]   = false
--- (+ l r)     = [[l]] + [[r]]
--- (- l r)     = [[l]] - [[r]]
--- (* l r)     = [[l]] * [[r]]
--- (< l r)     = [[l]] < [[r]]
--- (== l r)    = todo: learn how to represent polymorphism in D.S.
--- @
 module HaskellCourse.AE.Interp (interp) where
 
 import HaskellCourse.AE.AST
