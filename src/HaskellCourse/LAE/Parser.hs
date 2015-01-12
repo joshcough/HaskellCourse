@@ -1,9 +1,9 @@
-module HaskellCourse.LAEE.Parser (parseExp) where
+module HaskellCourse.LAE.Parser (parseExp) where
 
 import Data.Maybe (fromMaybe)
 import HaskellCourse.Parsing
 import HaskellCourse.Prim
-import HaskellCourse.LAEE.AST
+import HaskellCourse.LAE.AST
 
 -- | Parse the given s-expression into an LAE 'Exp'.
 parseExp :: SExpr -> Exp
