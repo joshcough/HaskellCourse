@@ -5,7 +5,7 @@
 --
 -- @
 --
---  e    := int | (prim e e) (let (var e) e) | var | (\var -> e) | (e e)
+--  e    := int | (prim e e) (let (var e) e) | var | (var -> e) | (e e)
 --
 --  prim := + | - | * | /
 --
@@ -28,5 +28,5 @@ instance Show Exp where
   show (Var     v)     = show v
   show (PrimApp p a b) = list [show p, show a, show b]
   show (Let v e b)     = list ["let", list [v, show e], show b]
-  show (Lambda v e)    = list ["\\", v, "->", show e]
+  show (Lambda v e)    = list [v, "->", show e]
   show (App f e)       = list [show f, show e]

@@ -24,8 +24,9 @@ library
   exposed-modules:
     HaskellCourse.UntypedLC.UntypedLC
     HaskellCourse.UntypedLC.AST
-    HaskellCourse.UntypedLC.Interp
     HaskellCourse.UntypedLC.Parser
+    --HaskellCourse.UntypedLC.LazyInterp
+    HaskellCourse.UntypedLC.StrictInterp
 
     HaskellCourse.LAEE.LAEE
     HaskellCourse.LAEE.AST
